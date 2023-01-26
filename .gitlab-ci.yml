@@ -1,0 +1,25 @@
+stages:
+  - containerize
+
+docker:
+  stage: containerize
+  image: docker:latest
+  services:
+    - docker:dind
+  only:
+    - main
+    - develop
+  before_script:
+    - IMAGE_TAG="dev"
+    - |
+      if [ "${CI_COMMIT_REF_NAME}" == "main" ]; then
+       IMAGE_TAG="prod"
+      fi
+  script:
+    - docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+    - docker build
+      -t ${DOCKER_REPO}:${IMAGE_TAG}
+      -t ${DOCKER_REPO}:latest
+      -f docker/Dockerfile .
+    - docker push ${DOCKER_REPO}:${IMAGE_TAG}
+    - docker push ${DOCKER_REPO}:latest
