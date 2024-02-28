@@ -1,31 +1,26 @@
 # Build stage
-FROM node:19.3 AS build
-
-## Declare env vars
-ARG SERVER="http://localhost:3000"
-ENV REACT_APP_SERVER=$SERVER
+FROM node:20.9.0 as build
 
 ## Create app directory
 WORKDIR /app
 
-## Install app dependencies
-COPY package*.json ./
-RUN npm i --omit=dev
-
 ## Bundle app source
-COPY ./src ./src
-COPY ./public ./public
+COPY . .
 
-## Create production build
-RUN npm run build
+## Install app dependencies
+COPY tsconfig*.json package*.json yarn.lock /
+RUN yarn
+
+## Build app
+RUN yarn build
 
 
 
 # Run stage
-FROM node:19.3
+FROM node:20.9.0
 
-## Install serve
-RUN npm i -g serve
+## Declare environment variables
+ENV ETH_DUTIES_API=http://localhost:5000
 
 ## Switch to less privileged user
 USER node
@@ -35,10 +30,13 @@ WORKDIR /app
 
 ## Copy app
 COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/build ./build
-
-## Execute app
-ENTRYPOINT [ "serve", "-s", "build", "-l", "3001"]
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/next.config.mjs ./next.config.mjs
 
 ## Expose port
-EXPOSE 3001
+EXPOSE 5001
+
+## Execute app
+CMD ["yarn", "start"]
