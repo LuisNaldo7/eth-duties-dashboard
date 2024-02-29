@@ -1,6 +1,8 @@
 # Eth-Duties-Dashboard
 
-A dashboard for TobiWo's [eth-duties](https://github.com/TobiWo/eth-duties).
+A dashboard for TobiWo's [eth-duties](https://github.com/TobiWo/eth-duties). Visualizes upcoming block proposals, sync duties and attestations.
+
+![Dashboard](/docs/app.png)
 
 ## Run app
 
