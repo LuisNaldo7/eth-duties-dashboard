@@ -59,34 +59,34 @@ export default function Home() {
           <div className="no-scrollbar overflow-y-auto rounded-b-lg">
             {blocks.map((duty, index) => {
               return (
-                <tr key={`row-attestations2-${index}`} className={`grid grid-cols-4 p-2 gap-2 bg-white ${index === attestations.length - 1 && 'rounded-b-lg'} `}>
+                <div key={`row-blocks-${index}`} className={`grid grid-cols-4 p-2 gap-2 bg-white ${index === attestations.length - 1 && 'rounded-b-lg'} `}>
                   <div>{duty.validator_index}</div>
                   <div className="text-critical">{duty.type}</div>
                   <div>{`Block`}</div>
                   <div className={`text-end ${duty.seconds_to_duty < 60 && 'text-warning'}`}>{duty.seconds_to_duty}</div>
-                </tr>
+                </div>
               );
             })}
 
             {syncs.map((duty, index) => {
               return (
-                <tr key={`row-attestations2-${index}`} className={`grid grid-cols-4 p-2 gap-2 bg-white ${index === attestations.length - 1 && 'rounded-b-lg'} `}>
+                <div key={`row-syncs-${index}`} className={`grid grid-cols-4 p-2 gap-2 bg-white ${index === attestations.length - 1 && 'rounded-b-lg'} `}>
                   <div>{duty.validator_index}</div>
                   <div className="text-warning">{duty.type}</div>
                   <div>{`Sync`}</div>
                   <div className={`text-end ${duty.seconds_to_duty < 60 && 'text-warning'}`}>{duty.seconds_to_duty}</div>
-                </tr>
+                </div>
               );
             })}
 
             {attestations.map((duty, index) => {
               return (
-                <tr key={`row-attestations2-${index}`} className={`grid grid-cols-4 p-2 gap-2 bg-white ${index === attestations.length - 1 && 'rounded-b-lg'} `}>
+                <div key={`row-attestations-${index}`} className={`grid grid-cols-4 p-2 gap-2 bg-white ${index === attestations.length - 1 && 'rounded-b-lg'} `}>
                   <div>{duty.validator_index}</div>
                   <div>{`Att.`}</div>
                   <div>{duty.slot}</div>
                   <div className={`text-end ${duty.seconds_to_duty < 60 && 'text-warning'}`}>{duty.seconds_to_duty}</div>
-                </tr>
+                </div>
               );
             })}
           </div>
