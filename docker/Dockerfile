@@ -1,6 +1,10 @@
 # Build stage
 FROM node:20.9.0 as build
 
+## Declare environment variables
+ENV ETH_DUTIES_API=http://localhost:5000
+ENV NEXT_PUBLIC_NETWORK=mainnet
+
 ## Create app directory
 WORKDIR /app
 
@@ -18,9 +22,6 @@ RUN yarn build
 
 # Run stage
 FROM node:20.9.0
-
-## Declare environment variables
-ENV ETH_DUTIES_API=http://localhost:5000
 
 ## Switch to less privileged user
 USER node

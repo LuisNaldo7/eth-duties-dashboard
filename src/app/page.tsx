@@ -60,7 +60,11 @@ export default function Home() {
             {blocks.map((duty, index) => {
               return (
                 <div key={`row-blocks-${index}`} className={`grid grid-cols-4 p-2 gap-2 bg-white ${index === attestations.length - 1 && 'rounded-b-lg'} `}>
-                  <div>{duty.validator_index}</div>
+                  <div>
+                    <a href={`https://${process.env.NEXT_PUBLIC_NETWORK}.beaconcha.in/validator/${duty.validator_index}`} target="_blank" rel="noopener noreferrer">
+                      {duty.validator_index}
+                    </a>
+                  </div>
                   <div className="text-critical">{duty.type}</div>
                   <div>{`Block`}</div>
                   <div className={`text-end ${duty.seconds_to_duty < 60 && 'text-warning'}`}>{duty.seconds_to_duty}</div>
@@ -71,7 +75,11 @@ export default function Home() {
             {syncs.map((duty, index) => {
               return (
                 <div key={`row-syncs-${index}`} className={`grid grid-cols-4 p-2 gap-2 bg-white ${index === attestations.length - 1 && 'rounded-b-lg'} `}>
-                  <div>{duty.validator_index}</div>
+                  <div>
+                    <a href={`https://${process.env.NEXT_PUBLIC_NETWORK}.beaconcha.in/validator/${duty.validator_index}`} target="_blank" rel="noopener noreferrer">
+                      {duty.validator_index}
+                    </a>
+                  </div>
                   <div className="text-warning">{duty.type}</div>
                   <div>{`Sync`}</div>
                   <div className={`text-end ${duty.seconds_to_duty < 60 && 'text-warning'}`}>{duty.seconds_to_duty}</div>
@@ -82,7 +90,11 @@ export default function Home() {
             {attestations.map((duty, index) => {
               return (
                 <div key={`row-attestations-${index}`} className={`grid grid-cols-4 p-2 gap-2 bg-white ${index === attestations.length - 1 && 'rounded-b-lg'} `}>
-                  <div>{duty.validator_index}</div>
+                  <div>
+                    <a href={`https://${process.env.NEXT_PUBLIC_NETWORK}.beaconcha.in/validator/${duty.validator_index}`} target="_blank" rel="noopener noreferrer">
+                      {duty.validator_index}
+                    </a>
+                  </div>
                   <div>{`Att.`}</div>
                   <div>{duty.slot}</div>
                   <div className={`text-end ${duty.seconds_to_duty < 60 && 'text-warning'}`}>{duty.seconds_to_duty}</div>
@@ -95,7 +107,7 @@ export default function Home() {
 
       <div className="mt-auto p-2 w-full">
         <div className="flex h-8 justify-center">
-          <a href={'https://github.com/LuisNaldo7/eth-duties-dashboard'}>
+          <a href={'https://github.com/LuisNaldo7/eth-duties-dashboard'} target="_blank" rel="noopener noreferrer">
             <div className="flex h-full w-full items-center gap-1 text-sm">
               <Image src={'github_icon.svg'} width={0} height={0} sizes="100vw" className={`h-full w-full`} alt={''} />
               <div>GitHub</div>
