@@ -65,8 +65,8 @@ export default function Home() {
                       {duty.validator_index}
                     </a>
                   </div>
-                  <div className="text-critical">{duty.type}</div>
-                  <div>{`Block`}</div>
+                  <div className="text-critical">{`Block`}</div>
+                  <div>{duty.slot}</div>
                   <div className={`text-end ${duty.seconds_to_duty < 60 && 'text-warning'}`}>{duty.seconds_to_duty}</div>
                 </div>
               );
@@ -80,8 +80,8 @@ export default function Home() {
                       {duty.validator_index}
                     </a>
                   </div>
-                  <div className="text-warning">{duty.type}</div>
-                  <div>{`Sync`}</div>
+                  <div className="text-warning">{`Sync`}</div>
+                  <div>{duty.slot}</div>
                   <div className={`text-end ${duty.seconds_to_duty < 60 && 'text-warning'}`}>{duty.seconds_to_duty}</div>
                 </div>
               );
