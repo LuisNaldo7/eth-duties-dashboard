@@ -15,7 +15,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     env:
-      TAGS: luisnaldo7/eth-duties-dashboard:dev
+      TAGS: nilsfs7/eth-duties-dashboard:dev
     steps:
       - name: Set environment by branch
         id: build-args
@@ -23,7 +23,7 @@ jobs:
           if [[ $GITHUB_REF == 'refs/heads/main' ]]; then
               echo "set values for production image"
               
-              echo "TAGS=luisnaldo7/eth-duties-dashboard:latest,luisnaldo7/eth-duties-dashboard:prod" >> "$GITHUB_ENV"
+              echo "TAGS=nilsfs7/eth-duties-dashboard:latest,nilsfs7/eth-duties-dashboard:prod" >> "$GITHUB_ENV"
           fi
 
       - name: Set up QEMU

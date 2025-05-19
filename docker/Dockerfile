@@ -1,5 +1,5 @@
 # Build stage
-FROM node:20.9.0 as build
+FROM node:22.15.1 AS build
 
 ## Declare environment variables
 ENV ETH_DUTIES_API=http://localhost:5000
@@ -21,7 +21,7 @@ RUN yarn build
 
 
 # Run stage
-FROM node:20.9.0
+FROM node:22.15.1
 
 ## Switch to less privileged user
 USER node
