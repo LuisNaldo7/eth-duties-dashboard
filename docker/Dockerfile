@@ -1,9 +1,13 @@
 # Build stage
 FROM node:22.15.1 AS build
 
+## Declare build arguments
+ARG ETH_DUTIES=http://localhost:5000
+ARG NETWORK=mainnet
+
 ## Declare environment variables
-ENV ETH_DUTIES_API=http://localhost:5000
-ENV NEXT_PUBLIC_NETWORK=mainnet
+ENV ETH_DUTIES_API=$ETH_DUTIES
+ENV NEXT_PUBLIC_NETWORK=$NETWORK
 
 ## Create app directory
 WORKDIR /app

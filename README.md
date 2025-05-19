@@ -11,8 +11,6 @@ Replace `ETH_DUTIES_API` by your eth-duties server and start the dashboard using
 ```bash
 docker run \
 -p 5001:5001 \
--e ETH_DUTIES_API="http://your-eth-duties-api:5000" \
--e NEXT_PUBLIC_NETWORK=mainnet \
 nilsfs7/eth-duties-dashboard:prod
 ```
 
@@ -63,7 +61,12 @@ yarn dev
 Build image
 
 ```bash
-docker build -f docker/Dockerfile -t nilsfs7/eth-duties-dashboard:latest .
+docker build \
+  --build-arg ETH_DUTIES=http://localhost:5000 \
+  --build-arg NETWORK=mainnet \
+  -f docker/Dockerfile \
+  -t nilsfs7/eth-duties-dashboard:latest \
+  .
 ```
 
 Execute container
@@ -73,8 +76,6 @@ docker run \
 --network host \
 --rm \
 -p 5001:5001 \
--e ETH_DUTIES_API="http://localhost:5000" \
--e NEXT_PUBLIC_NETWORK=mainnet \
 --name eth-duties-dashboard \
 nilsfs7/eth-duties-dashboard:latest
 ```
